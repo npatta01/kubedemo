@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: main-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: dataapps.np-projects.com
+    http:
+      paths:
+      - path: /np
+        backend:
+          serviceName: python-hello
+          servicePort: 80

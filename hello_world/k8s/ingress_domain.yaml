@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: main-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: k8s-global-ip-demo
+    kubernetes.io/ingress.class: "gce"
+spec:
+  rules:
+  - host: dataapps.np-projects.com
+    http:
+      paths:
+      - backend:
+          serviceName: python-hello
+          servicePort: 80

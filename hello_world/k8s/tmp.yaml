@@ -1,0 +1,24 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: python-hello
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: python-hello
+        env:  prod
+        creator: "np"
+    spec:
+      containers:
+        -
+          name: python-hello-web
+          imagePullPolicy: Always
+          image: gcr.io/ableto-datateam/pythonhello-nidhin.pattaniyil:latest
+          env:
+            - name: USER
+              value: "demo"
+          ports:
+            - name: main-port
+              containerPort: 5000
